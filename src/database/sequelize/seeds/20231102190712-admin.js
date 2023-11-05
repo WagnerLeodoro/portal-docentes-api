@@ -9,14 +9,15 @@ module.exports = {
       'users',
       [
         {
-          name: 'John Doe',
-          email: 'john.doe@mail.com',
+          name: process.env.ADMIN_USER,
+          email: process.env.ADMIN_EMAIL,
           password: bcrypt.hashSync(
             process.env.ADMIN_PASSWORD,
             bcrypt.genSaltSync(8),
           ),
           isAdmin: true,
           created_at: new Date(),
+          updated_at: new Date(),
         },
       ],
       {},
