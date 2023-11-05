@@ -1,3 +1,4 @@
+require('dotenv/config')
 const { Sequelize } = require('sequelize')
 const dataBaseConfig = require('../../config/database')
 
@@ -13,7 +14,7 @@ const conn = new Sequelize(
   dataBaseConfig.password,
   {
     ...dataBaseConfig,
-    host: 'database_docentes',
+    host: process.env.DATABASE_HOSTNAME,
   },
 )
 
