@@ -6,6 +6,7 @@
   "scripts": {
     "start": "pm2-runtime start ecosystem.config.js --env production",
     "dev": "nodemon ./src/server.js",
+    "migrate": "sequelize-cli db:migrate",
     "seed:admin": "npx sequelize db:seed:all"
   },
   "keywords": [],
@@ -18,14 +19,15 @@
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^9.0.2",
-    "mariadb": "^3.2.2",
     "multer": "^1.4.5-lts.1",
+    "pg": "^8.11.3",
+    "pg-hstore": "^2.3.4",
     "pm2": "^5.3.0",
+    "sequelize-cli": "^6.6.1",
     "sequelize": "^6.33.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1",
-    "sequelize-cli": "^6.6.1",
     "sucrase": "^3.34.0"
   }
 }

@@ -1,13 +1,8 @@
-require('dotenv/config')
+const dotenv = require('dotenv')
+dotenv.config()
 
 module.exports = {
-  /* SQLite */
-  //dialect: 'mariadb',
-  //storage: './db.sqlite',
-
-  /* MySQL / MariaDB */
-  dialect: 'mariadb',
-  host: process.env.DATABASE_HOST,
+  dialect: 'postgres',
   port: process.env.DATABASE_PORT,
   username: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
