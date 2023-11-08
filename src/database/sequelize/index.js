@@ -1,4 +1,6 @@
-require('dotenv/config')
+const dotenv = require('dotenv')
+dotenv.config()
+
 const { Sequelize } = require('sequelize')
 const dataBaseConfig = require('../../config/database')
 

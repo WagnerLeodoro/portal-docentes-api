@@ -23,7 +23,7 @@ docenteRoutes.use(ensureAuthenticated, ensureIsAdmin)
 
 docenteRoutes.post('/', docenteController.createDocente)
 
-docenteRoutes.post('/upload', fotoController.store)
+docenteRoutes.post('/temp', fotoController.store)
 
 docenteRoutes.put('/:id', docenteController.updateDocente)
 
