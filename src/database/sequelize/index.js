@@ -16,7 +16,8 @@ const conn = new Sequelize(
   dataBaseConfig.password,
   {
     ...dataBaseConfig,
-    host: process.env.DATABASE_HOSTNAME,
+    host: process.env.DATABASE_HOST,
+    dialect: process.env.DIALECT,
   },
 )
 
