@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "pm2-runtime start ecosystem.config.js --env production",
+    "start": "pm2-runtime start ecosystem.config.js --env production sequelize-cli db:migrate sequelize db:seed:all",
     "dev": "nodemon ./src/server.js",
     "migrate": "sequelize-cli db:migrate",
     "seed:admin": "npx sequelize db:seed:all"
