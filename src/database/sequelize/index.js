@@ -17,7 +17,6 @@ const conn = new Sequelize(
   {
     ...dataBaseConfig,
     host: process.env.DATABASE_HOST,
-    dialect: process.env.DIALECT,
   },
 )
 
