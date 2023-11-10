@@ -21,14 +21,6 @@ const conn =
           dialect: 'postgres',
           port: process.env.DATABASE_PORT,
           host: process.env.DATABASE_HOST,
-          dialectOptions: {
-            ssl: {
-              require: true,
-              rejectUnauthorized: false,
-            },
-            keepAlive: true,
-          },
-          ssl: true,
           logging: true,
           native: false,
         },
