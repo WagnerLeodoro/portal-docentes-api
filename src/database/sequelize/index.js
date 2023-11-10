@@ -10,10 +10,7 @@ const User = require('../../model/User')
 
 const models = [Docente, Foto, User]
 
-const conn = new Sequelize(dataBaseConfig, {
-  host: process.env.DATABASE_HOST,
-  dialect: 'postgres',
-})
+const conn = new Sequelize(dataBaseConfig)
 
 models.forEach((model) => model.init(conn))
 models.forEach((model) => model.associate && model.associate(conn.models))
