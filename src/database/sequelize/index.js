@@ -13,8 +13,13 @@ const models = [Docente, Foto, User]
 const conn =
   process.env.NODE_ENV !== 'production'
     ? new Sequelize(dataBaseConfig)
-    : new Sequelize(dataBaseConfig, {
-        ...dataBaseConfig,
+    : new Sequelize({
+        dialect: 'postgres',
+        port: process.env.DATABASE_PORT,
+        username: process.env.DATABASE_USER,
+        password: process.env.DATABASE_PASSWORD,
+        database: process.env.DATABASE,
+        host: process.env.DATABASE_HOST,
         pool: {
           max: 5,
           min: 0,
