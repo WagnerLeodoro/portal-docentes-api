@@ -29,6 +29,8 @@ const conn =
             keepAlive: true,
           },
           ssl: true,
+          logging: true,
+          native: false,
         },
       )
 
