@@ -10,14 +10,11 @@ const User = require('../../model/User')
 
 const models = [Docente, Foto, User]
 
-const dbConnection =
-  process.env.NODE_ENV === 'production'
-    ? new Sequelize({
-        database: dataBaseConfig.database,
-        dialect: 'postgres',
-        username: dataBaseConfig.username,
-        password: dataBaseConfig.password,
-        port: dataBaseConfig.port,
+const conn =
+  process.env.NODE_ENV !== 'production'
+    ? new Sequelize(dataBaseConfig)
+    : new Sequelize(dataBaseConfig, {
+        ...dataBaseConfig,
         pool: {
           max: 5,
           min: 0,
@@ -33,19 +30,6 @@ const dbConnection =
         },
         ssl: true,
       })
-    : new Sequelize(
-        `postgres://${dataBaseConfig.username}:${dataBaseConfig.password}@${dataBaseConfig.host}/${dataBaseConfig.database}`,
-        { logging: false, native: false },
-      ).authenticate()
 
-try {
-  await Sequelize.authenticate()
-  console.log('Connection has been established successfully.')
-} catch (error) {
-  console.error('Unable to connect to the database:', error)
-}
-
-models.forEach((model) => model.init(dbConnection))
-models.forEach(
-  (model) => model.associate && model.associate(dbConnection.models),
-)
+models.forEach((model) => model.init(conn))
+models.forEach((model) => model.associate && model.associate(conn.models))
