@@ -19,8 +19,9 @@ const dbConnection =
         password: dataBaseConfig.password,
         port: dataBaseConfig.port,
         pool: {
-          max: 3,
-          min: 1,
+          max: 5,
+          min: 0,
+          acquire: 30000,
           idle: 10000,
         },
         dialectOptions: {
@@ -34,7 +35,15 @@ const dbConnection =
       })
     : new Sequelize(
         `postgres://${dataBaseConfig.username}:${dataBaseConfig.password}@${dataBaseConfig.host}/${dataBaseConfig.database}`,
-      )
+        { logging: false, native: false },
+      ).authenticate()
+
+try {
+  await Sequelize.authenticate()
+  console.log('Connection has been established successfully.')
+} catch (error) {
+  console.error('Unable to connect to the database:', error)
+}
 
 models.forEach((model) => model.init(dbConnection))
 models.forEach(
