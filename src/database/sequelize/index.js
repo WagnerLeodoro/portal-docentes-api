@@ -10,15 +10,20 @@ const User = require('../../model/User')
 
 const models = [Docente, Foto, User]
 
-const conn = new Sequelize(
-  dataBaseConfig.database,
-  dataBaseConfig.username,
-  dataBaseConfig.password,
-  {
-    ...dataBaseConfig,
-    host: process.env.DATABASE_HOST,
-  },
-)
+const dbConnection =
+  NODE_ENV === 'development'
+    ? new Sequelize(
+        dataBaseConfig.database,
+        dataBaseConfig.username,
+        dataBaseConfig.password,
+        {
+          ...dataBaseConfig,
+          host: process.env.DATABASE_HOST,
+        },
+      )
+    : new Sequelize(process.env.DATABASE_URL)
 
-models.forEach((model) => model.init(conn))
-models.forEach((model) => model.associate && model.associate(conn.models))
+models.forEach((model) => model.init(dbConnection))
+models.forEach(
+  (model) => model.associate && model.associate(dbConnection.models),
+)
