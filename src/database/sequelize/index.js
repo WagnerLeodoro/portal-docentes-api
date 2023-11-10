@@ -20,9 +20,6 @@ const conn =
         {
           host: process.env.DATABASE_HOST,
           dialect: 'postgres',
-          port: process.env.DATABASE_PORT,
-          logging: true,
-          native: false,
         },
       )
 
