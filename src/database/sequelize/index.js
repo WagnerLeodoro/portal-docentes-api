@@ -11,7 +11,7 @@ const User = require('../../model/User')
 const models = [Docente, Foto, User]
 
 const dbConnection =
-  NODE_ENV === 'development'
+  process.env.NODE_ENV === 'development'
     ? new Sequelize(
         dataBaseConfig.database,
         dataBaseConfig.username,
