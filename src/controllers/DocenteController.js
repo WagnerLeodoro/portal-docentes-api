@@ -68,7 +68,7 @@ class DocenteController {
         where: { id: id },
       },
     )
-    if (!updatedDocente.id) {
+    if (!updatedDocente) {
       throw new AppError('Docente não encontrado', 400)
     }
     res.status(200).json('Docente atualizado com sucesso')
